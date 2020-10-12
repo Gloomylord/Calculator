@@ -1,0 +1,50 @@
+$buttonBackground: linear-gradient(135deg, #ffec61, #f321d7);
+$defTransition: 0.2s;
+
+.calculatorButton {
+  border: 1px solid white;
+  background: $buttonBackground;
+  font-size: 30px;
+  padding: 3rem;
+  cursor: pointer;
+  color: white;
+  transition: $defTransition;
+  box-shadow: inset 0 0 1rem rgba(255, 255, 255, .3);
+  position: relative;
+
+  &:after {
+    content: '';
+    background: radial-gradient(rgba(255, 255, 255, .3), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+    background-size: 200% 200%;
+    background-position: 200% 45%;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transition: .5s;
+    transition-delay: .2s;
+  }
+
+  &:before {
+    content: '';
+    background: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transition: .2s;
+  }
+
+  &:hover {
+    &:after {
+      background-position: -200% 45%;
+    }
+
+    &:before {
+      background: rgba(0, 0, 0, .1);
+    }
+  }
+}
