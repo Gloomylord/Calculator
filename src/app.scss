@@ -1,4 +1,4 @@
-$calculatorBorder: 3px solid #eceaea;
+$calculatorBorder: 1px solid #eceaea;
 
 .app {
   background-color: #2b3a42;
@@ -12,10 +12,45 @@ $calculatorBorder: 3px solid #eceaea;
   .calculator {
     border: $calculatorBorder;
     padding: 2rem 3rem;
-    background: #f8ecec;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, .3),
-    5px 5px 25px rgba(0, 0, 0, .3);
+    background: #dcd6ee;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, .3),
+    10px 10px 25px rgba(0, 0, 0, .3),
+    10px 10px 50px rgba(0, 0, 0, .3);
     display: grid;
+    grid-template-rows: 70px auto;
+    grid-template-columns: 300px 1fr;
     grid-gap: 2rem;
+  }
+}
+
+.containerNumbers {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(4, minmax(100px, 120px));
+}
+
+.clearButton {
+  padding: 1rem !important;
+  background: #f58b8b !important;
+}
+
+.operation {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+}
+
+.buttonZero {
+  grid-column: span 3;
+}
+
+.lastResult {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  label {
+    font-size: 30px;
+    color: #193202;
   }
 }

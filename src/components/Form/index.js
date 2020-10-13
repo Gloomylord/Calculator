@@ -2,6 +2,6 @@ import React from 'react';
 import cn from 'classnames';
 import './style.scss';
 
-export const Form = ({className, ...rest}) => {
-    return <input className={cn('calculatorForm', className)} {...rest}/>
-}
+export const Form = React.forwardRef(({className, ...rest},ref) => {
+    return <input ref={ref} className={cn('calculatorForm', className)} {...rest}/>
+})
