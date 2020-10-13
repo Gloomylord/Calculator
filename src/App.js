@@ -3,11 +3,19 @@ import {Form} from './components/Form';
 import "./app.scss";
 import {Button} from "./components/Button";
 
+const parse = require('./functions/parse');
+
 function App() {
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState('0');
+    const [formState, setFormState] = useState('normal');
 
     const onClick = useCallback((event) => {
-        setValue(value + event.target.textContent);
+        const letter = event.target.textContent || event.target.innerText;
+        if(value.match(/[-+/*]$/) && (letter == '+' || letter == '-' || letter == '*' || letter == '/')){
+            setValue(value.slice(0,value.length - 1) + letter)
+        } else {
+            setValue(value + event.target.textContent);
+        }
     }, [value]);
 
     const onChange = useCallback((e) => {
@@ -15,10 +23,16 @@ function App() {
     }, [value])
 
     const solve = useCallback(() => {
-        const res = eval(value);
-        if ((value ^ 0) == value) {
+        const res = parse(value);
+        console.log(res);
+        if(res == 'Error'){
+            setFormState('error');
+        }
+        else if ((+value ^ 0) == +value) {
+            setFormState('normal');
             setValue(res);
         } else {
+            setFormState('normal');
             setValue(' ' + Math.ceil(res * 100000) / 100000);
         }
     }, [value]);
@@ -46,7 +60,7 @@ function App() {
 
     return <div className='app'>
         <div className='calculator'>
-            <Form value={value} onChange={onChange}/>
+            <Form value={value} className={formState} onChange={onChange}/>
             <Button className='clearButton' onMouseDown={clear.onMouseDown} onMouseUp={clear.onMouseUp}>CE</Button>
             <div className='containerNumbers'>
                 {Array.from({length: 9}).map((_, i) => <Button onClick={onClick}

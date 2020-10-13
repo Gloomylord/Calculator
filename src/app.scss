@@ -54,3 +54,10 @@ $calculatorBorder: 1px solid #eceaea;
     color: #193202;
   }
 }
+
+.error {
+  background: #db4a4a;
+  &:after {
+    content: '';
+  }
+}
